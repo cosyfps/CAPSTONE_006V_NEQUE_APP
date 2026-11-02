@@ -1,0 +1,86 @@
+@startuml
+
+left to right direction
+
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam roundcorner 18
+skinparam dpi 160
+skinparam linetype ortho
+
+skinparam actor {
+    BorderColor #64748B
+    FontColor #111827
+}
+
+skinparam usecase {
+    BackgroundColor #F8FAFC
+    BorderColor #94A3B8
+    FontColor #111827
+}
+
+skinparam rectangle {
+    BorderColor #CBD5E1
+    FontColor #111827
+}
+
+skinparam package {
+    BorderColor #CBD5E1
+    BackgroundColor #FFFFFF
+    FontColor #111827
+}
+
+skinparam ArrowColor #64748B
+
+actor Entrenador as E
+actor Alumno as A
+
+rectangle "Sistema Ñeque" {
+
+    usecase "Iniciar sesión" as LOGIN
+
+    package "Funciones del entrenador" {
+        usecase "Invitar alumno" as E1
+        usecase "Visualizar alumnos" as E2
+        usecase "Gestionar estado\ndel alumno" as E3
+        usecase "Crear entrenamiento" as E4
+        usecase "Asignar entrenamiento" as E5
+        usecase "Revisar progreso\ndel alumno" as E6
+    }
+
+    package "Funciones del alumno" {
+        usecase "Visualizar entrenamientos\nasignados" as A1
+        usecase "Registrar peso corporal" as A6
+        usecase "Visualizar estadísticas\ny progreso" as A7
+
+        usecase "Iniciar entrenamiento" as A2
+        usecase "Registrar repeticiones\ny peso" as A3
+        usecase "Marcar ejercicio como\nrealizado o saltado" as A4
+        usecase "Finalizar entrenamiento" as A5
+    }
+}
+
+E --> LOGIN
+A --> LOGIN
+
+E --> E1
+E --> E2
+E --> E3
+E --> E4
+E --> E5
+E --> E6
+
+A --> A1
+A --> A2
+A --> A6
+A --> A7
+
+A2 ..> A1 
+A2 ..> A3 
+A2 ..> A4 
+A2 ..> A5 
+
+LOGIN -[hidden]-> E1
+E6 -[hidden]-> A1
+
+@enduml
