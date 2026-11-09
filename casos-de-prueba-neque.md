@@ -785,30 +785,29 @@ La ficha se actualiza correctamente y se aplican las validaciones correspondient
 
 **Estado:**
 
-- [ ] Pasa
+- [x] Pasa
 - [ ] Falla
 - [ ] Bloqueado
 
-| Campo | Completar |
-| --- | --- |
-| Probó | |
-| Fecha | |
-| Hora | |
-| Dispositivo | |
-| Sistema operativo / navegador | |
-| Versión / build | |
+| Campo                         | Completar                |
+| ----------------------------- | ------------------------ |
+| Probó                         | Benjamín Hidalgo         |
+| Fecha                         | 08-11-26                 |
+| Hora                          | 21:34                    |
+| Dispositivo                   | PC                       |
+| Sistema operativo / navegador | Windows - Microsoft Edge |
+| Versión / build               |                          |
 
-**Resultado obtenido:**
-
-<!-- Describir lo que ocurrió al ejecutar el caso. -->
+**Resultado obtenido:** Se guarda correctamente
 
 **Evidencia:**
 
-<!-- Agregar enlaces o rutas de capturas, videos o logs. -->
+![Evaluación física: evidencia 1](docs/evidencias-caso-uso/ev-fisica-1.png)
+
+![Evaluación física: evidencia 2](docs/evidencias-caso-uso/ev-fisica-2.png)
+
 
 **Nota / incidencia:**
-
-<!-- Agregar observaciones, motivo del bloqueo o enlace al error reportado. -->
 
 ---
 
