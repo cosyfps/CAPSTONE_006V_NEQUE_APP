@@ -1,113 +1,140 @@
 # Ñeque — Portafolio de Título (CAPSTONE)
 
-**Ñeque** es una app móvil híbrida para entrenadores personales: acceso invitation-only,
-recuperación de contraseña y un panel de entrenador para gestionar dashboard, clientes,
-rutinas y perfil. Resuelve la falta de una herramienta simple y propia para que un
-entrenador personal administre a sus clientes y sus rutinas desde el celular, sin
-depender de planillas sueltas o WhatsApp.
+**Ñeque** es una aplicación móvil (iOS, Android y web) para **entrenadores personales y sus
+alumnos**. El entrenador gestiona su cartera, registra anamnesis y evaluaciones físicas,
+construye rutinas y las asigna; el alumno ve su rutina del día, la ejecuta guiado serie por
+serie registrando la carga real y sigue su progreso.
 
-Este repositorio es el **contenedor de evidencias académicas** de la asignatura CAPSTONE
-(Instructivo Capstone 46104, Duoc UC) para el proceso de Portafolio de Título — no
-contiene código de la aplicación. El código vive en dos repositorios aparte:
+Resuelve un problema concreto: los entrenadores independientes trabajan con planillas,
+WhatsApp y papel, por lo que la información del alumno se pierde, el seguimiento no escala y
+el progreso no es demostrable. Ñeque reúne planificación, ejecución y seguimiento en una sola
+herramienta. Ver [Innovación](docs/innovacion.md).
 
-| Componente | Repositorio | Stack |
-| ---------- | ----------- | ----- |
-| Frontend (app móvil) | [ui-any-neque-mobile-app](https://github.com/cosyfps/ui-any-neque-mobile-app) | Angular 17 + Ionic 8 + Capacitor 6 |
-| BFF (backend) | [bff-any-neque-mobile-app](https://github.com/cosyfps/bff-any-neque-mobile-app) | NestJS (arquitectura hexagonal) + Supabase |
+| Dato        | Valor                                                      |
+| ----------- | ---------------------------------------------------------- |
+| Asignatura  | Capstone (PTY4614) — Sección PTY4614-006, sede Plaza Norte |
+| Docente     | Álvaro Mellado                                             |
+| Equipo      | 9                                                          |
+| Metodología | **Scrum** — ver [metodología](docs/metodologia.md)         |
 
-## Tecnologías utilizadas
+## Repositorios
 
-| Categoría | Tecnología |
-| --------- | ---------- |
-| Frontend | Angular 17 (standalone + signals), Ionic 8, Capacitor 6 (Android/iOS), SCSS con design tokens propios |
-| Backend | NestJS con arquitectura hexagonal (vertical slicing por feature), TypeScript |
-| Datos y Auth | Supabase (Postgres + Auth), acceso vía `service_role` solo desde el BFF |
-| Pagos (a futuro) | Flow.cl |
-| Testing | Jest 29 en ambos repos (umbral de cobertura 80%) |
-| Calidad | ESLint + Prettier + Husky + commitlint |
-| CI/CD | GitHub Actions |
+Este repositorio es el **contenedor de evidencias académicas y documentación**. El código de
+la aplicación (app móvil, BFF y migraciones de base de datos) vive en un único repositorio:
 
-## Arquitectura de la solución
+| Componente                     | Repositorio                                                                                  |
+| ------------------------------ | -------------------------------------------------------------------------------------------- |
+| App móvil, BFF y base de datos | [cosyfps/api-any-neque-mobile-app](https://github.com/cosyfps/api-any-neque-mobile-app)      |
+| Evidencias y documentación     | [cosyfps/CAPSTONE_006V_NEQUE_APP](https://github.com/cosyfps/CAPSTONE_006V_NEQUE_APP) (este) |
+
+## Tecnologías
+
+| Categoría     | Tecnología                                                                                     |
+| ------------- | ---------------------------------------------------------------------------------------------- |
+| App móvil     | Angular 17 (standalone + signals) y Capacitor 6 (iOS/Android), SCSS con design tokens propios |
+| BFF (backend) | Hono + TypeScript, validación con zod, función serverless en Vercel                            |
+| Datos y Auth  | Supabase: PostgreSQL con Row Level Security, Auth (JWT) y Storage                              |
+| Testing       | Jest 29: 1.725 pruebas, 97% de cobertura de líneas (umbral 80%)                                |
+| Calidad       | ESLint, Prettier, Husky y commitlint (Conventional Commits)                                    |
+| CI/CD         | GitHub Actions (quality gate e IPA iOS) y Vercel                                               |
+| Contenedores  | Docker + Docker Compose (Nginx para el front, Node para el BFF)                                |
+
+## Arquitectura
 
 ```
-App Ñeque (Angular 17 + Ionic + Capacitor)
-        │  HTTP + JWT propio
+App Ñeque (Angular 17 + Capacitor 6)      hexagonal: domain / application / infrastructure / ui
+        │  HTTPS /api/v1 + JWT
         ▼
-   BFF NestJS  ──service_role──> Supabase (Postgres + Auth)
-               └──────────────> Flow.cl u otras APIs (a futuro)
+BFF Hono (función serverless en Vercel)   http → application → domain / infrastructure
+        │  clave de servicio (solo servidor)
+        ▼
+Supabase: PostgreSQL + RLS · Auth · Storage
 ```
 
-La app nunca habla directo con Supabase: todo pasa por el BFF, que agrega las
-credenciales privilegiadas detrás de un único contrato HTTP para que ninguna clave
-sensible viaje en el binario de la app.
+La app nunca habla directo con Supabase: todo pasa por el BFF, que resuelve identidad y rol
+desde el JWT, para que ninguna clave sensible viaje en el binario. Detalle en los
+[diagramas UML](docs/uml/uml.md) y el [modelo de datos](docs/modelo-datos.md).
 
-## Cómo ejecutar el proyecto localmente
+## Cómo levantar el proyecto
 
-El código ejecutable está en los dos repos enlazados arriba; cada uno trae su propio
-README con el detalle completo. En resumen:
+### Con Docker (desde este repositorio)
 
 ```bash
-# Frontend
-git clone https://github.com/cosyfps/ui-any-neque-mobile-app.git
-cd ui-any-neque-mobile-app
-npm ci
-npm start          # http://localhost:4200
-
-# BFF
-git clone https://github.com/cosyfps/bff-any-neque-mobile-app.git
-cd bff-any-neque-mobile-app
-npm install
-cp .env.example .env
-npm run start:dev  # http://localhost:3000
+cp .env.example .env      # completar con las claves del proyecto Supabase
+docker compose up --build
 ```
+
+- App web: http://localhost:8080
+- BFF: http://localhost:3000/api/v1/health
+
+El [`Dockerfile`](Dockerfile) clona el repositorio de la aplicación, sirve el BFF con Node y el
+front compilado con Nginx ([`docker/nginx.conf`](docker/nginx.conf)), que reenvía `/api` al BFF.
+
+### Sin Docker
+
+```bash
+git clone https://github.com/cosyfps/api-any-neque-mobile-app.git
+cd api-any-neque-mobile-app
+npm ci
+cp .env.example .env.local   # completar con las claves de Supabase
+npm run dev:api              # BFF en http://localhost:3000/api/v1
+npm start                    # app en http://localhost:4200
+```
+
+Instalación completa, base de datos, despliegue y build nativo en el
+[manual técnico](docs/manual-tecnico.md).
+
+## Documentación técnica
+
+| Documento                                                      | Contenido                                             |
+| -------------------------------------------------------------- | ----------------------------------------------------- |
+| [Product Vision](docs/product-vision.md)                       | Problema, público objetivo y propuesta de valor       |
+| [Metodología](docs/metodologia.md)                             | Scrum: roles, artefactos, eventos y prácticas         |
+| [Product Backlog](docs/product-backlog.md)                     | Historias de usuario priorizadas                      |
+| [Sprint Backlog](docs/sprint-backlog.md)                       | Sprints, objetivos y estado                           |
+| [Definition of Done](docs/definition-of-done.md)               | Criterios de terminado                                |
+| [Retrospectivas](docs/retrospectivas.md)                       | Aprendizajes y acciones de mejora                     |
+| [Requisitos no funcionales](docs/requisitos-no-funcionales.md) | Seguridad, rendimiento, usabilidad y otros            |
+| [Modelo de datos](docs/modelo-datos.md)                        | Diagrama entidad-relación, tablas y reglas de negocio |
+| [Diagramas UML](docs/uml/uml.md)                               | Casos de uso, secuencia, componentes y clases         |
+| [Plan de pruebas](docs/pruebas.md)                             | Tipos de prueba, CI y resultados de cobertura         |
+| [Manual técnico](docs/manual-tecnico.md)                       | Instalación, configuración, despliegue y build nativo |
+| [Innovación](docs/innovacion.md)                               | Qué resuelve, qué lo diferencia y qué valor agrega    |
 
 ## Integrantes del equipo
 
-| Integrante | Rol |
-| ---------- | --- |
-| Kelvin Moreno | Full-stack |
-| Benjamin Hidalgo | Product Owner (PO), Business Analyst (BA), Scrum Master |
-
-## Metodología de trabajo
-
-El equipo trabaja con **metodología Ágil (Scrum/Kanban)**. El ciclo de tres fases de la
-asignatura (Fase 1: definición 20%, Fase 2: desarrollo 50%, Fase 3: presentación 30%)
-enmarca los sprints y las entregas sumativas del ramo.
+| Integrante       | Rol                                               |
+| ---------------- | ------------------------------------------------- |
+| Kelvin A. Moreno | Desarrollador full-stack y líder técnico          |
+| Benjamin Hidalgo | Product Owner, Analista de Negocio y Scrum Master |
+| Daniel Aravena   | QA, documentación y diseño de datos               |
 
 ## Estructura de este repositorio
 
-Las evidencias se organizan por Fase y, dentro de cada Fase, por tipo de entrega —
-siguiendo la tabla oficial de entregables de la asignatura.
+Las evidencias se organizan por fase y, dentro de cada fase, por tipo de entrega, siguiendo la
+tabla oficial de entregables de la asignatura.
 
 ```
 Fase 1/
-├── Evidencias Individuales/   → autoevaluación de competencias, diario de reflexión y
-│                                 autoevaluación de cada integrante (3 docs x 2 personas)
-└── Evidencias Grupales/       → formativa, guía de estudiante (ES/EN) y presentación
-
+├── Evidencias Individuales/   → autoevaluación de competencias, diario de reflexión y autoevaluación
+└── Evidencias Grupales/       → formativa 1.4, guía 1.5 (definición del proyecto) y presentación
 Fase 2/
 ├── Evidencias Individuales/   → diario de reflexión de cada integrante
-├── Evidencias Grupales/       → guías de estudiante de avance e informe final (ES/EN)
-│                                 y planillas de evaluación de avance y final
-└── Evidencias Proyecto/       → presentación, evidencias de documentación y evidencias
-                                  de sistema (Aplicación / Base de datos)
-
+├── Evidencias Grupales/       → guía 2.4 (avance), guía 2.6 (informe final) y planillas de evaluación
+└── Evidencias Proyecto/       → presentación, evidencias de documentación y de sistema
 Fase 3/
 ├── Evidencias Individuales/   → diario de reflexión de cada integrante
-└── Evidencias Grupales/       → planilla de evaluación y presentación final (ES/EN)
+└── Evidencias Grupales/       → orientaciones 3.3, planilla de evaluación y presentación final
+docs/                          → documentación técnica (tabla de arriba)
+Dockerfile, docker-compose.yml, .env.example, docker/   → entorno con contenedores
 ```
 
-Cada archivo listado en las carpetas ya está creado como placeholder vacío con el nombre
-exacto que exige la asignatura (`Apellido_Nombre_X.Y_APT122_...` para las evidencias
-individuales); el equipo reemplaza cada uno por el documento real a medida que avanza
-cada fase.
-
-> La `PLANILLA DE EVALUACIÓN FASE 1.xlsx` no vive en este repositorio: según la tabla
-> oficial de entregables se envía directamente por correo al/la docente, no se sube aquí.
+> La `PLANILLA DE EVALUACIÓN FASE 1.xlsx` no vive en este repositorio: según la tabla oficial
+> de entregables se envía por correo al docente. Las versiones en inglés de las guías son
+> optativas y el equipo no las presenta.
 
 ## Referencia
 
-Este repositorio y su estructura de evidencias siguen el **Instructivo Capstone 46104**
-de Duoc UC (Escuela de Informática y Telecomunicaciones). El repositorio se mantiene
-**público** desde el inicio de la asignatura y debe permanecer activo hasta la semana 18,
-cuando se realiza la extracción final del proyecto.
+Este repositorio sigue el **Instructivo Capstone 46104** de Duoc UC (Escuela de Informática y
+Telecomunicaciones). Se mantiene **público** y activo hasta la semana 18, cuando se realiza la
+extracción final del proyecto.

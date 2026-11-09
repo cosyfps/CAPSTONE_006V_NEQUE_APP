@@ -1,0 +1,44 @@
+@startuml
+title Ejecución de un entrenamiento (alumno)
+skinparam shadowing false
+skinparam sequenceMessageAlign center
+
+actor Alumno
+participant "App Ñeque\n(Angular + Capacitor)" as App
+participant "BFF Hono\n(Vercel /api/v1)" as BFF
+database "Supabase\n(Auth + Postgres)" as DB
+
+Alumno -> App : Inicia sesión (correo, contraseña)
+App -> BFF : POST /auth/login
+BFF -> DB : Valida credenciales (Supabase Auth)
+DB --> BFF : JWT + perfil
+BFF --> App : sesión (rol student)
+
+Alumno -> App : Abre "Mi rutina"
+App -> BFF : GET /students/:id/routine
+BFF -> DB : rutina activa + días + ejercicios
+DB --> BFF : rutina
+BFF --> App : rutina del día
+
+Alumno -> App : Comenzar sesión
+App -> BFF : POST /workouts/:id/start
+BFF -> DB : workout_sessions.status = in_progress
+BFF --> App : sesión iniciada
+
+loop por cada ejercicio y serie
+  Alumno -> App : Confirma serie (reps y peso reales)
+  App -> BFF : POST /workouts/:id/exercises/:exerciseId/sets
+  BFF -> DB : workout_sets
+  App -> App : Temporizador de descanso
+  opt ejercicio saltado
+    App -> BFF : POST /workouts/:id/exercises/:exerciseId/skip (motivo)
+  end
+end
+
+Alumno -> App : Finalizar
+App -> BFF : POST /workouts/:id/complete
+BFF -> DB : status completed + duración
+DB --> BFF : ok
+BFF --> App : resumen (duración, ejercicios, series)
+App --> Alumno : Modal de celebración y progreso actualizado
+@enduml
