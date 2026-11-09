@@ -11,6 +11,15 @@
 3. Si un caso falla, anota qué viste, el dispositivo y la hora para buscarlo en los logs.
 4. Prioriza los casos de prioridad alta.
 
+
+## Credenciales de prueba
+
+### Entrenador: 
+	Email : entrenador@neque.cl
+	Contraseña: 1232026*Cl
+### Alumno: 
+	Email: alumno@neque.cl
+	Contraseña: 1232026*Cl
 ## Datos de la ejecución
 
 - **Versión / build / IPA:** <!-- Completar -->
@@ -308,14 +317,14 @@ Debería dejarme clickar y que me aparezca el mensaje de contrasñe
 - [ ] Falla
 - [ ] Bloqueado
 
-| Campo | Completar |
-| --- | --- |
-| Probó | |
-| Fecha | |
-| Hora | |
-| Dispositivo | |
-| Sistema operativo / navegador | |
-| Versión / build | |
+| Campo                         | Completar               |
+| ----------------------------- | ----------------------- |
+| Probó                         | Benjamín Hidalgo        |
+| Fecha                         | 07-11-26                |
+| Hora                          | 12:14                   |
+| Dispositivo                   | PC                      |
+| Sistema operativo / navegador | Windows - Google Chrome |
+| Versión / build               |                         |
 
 **Resultado obtenido:** Se logra cerrar sesión y al retroceder solo muestra la página de login.
 
@@ -350,14 +359,14 @@ Debería dejarme clickar y que me aparezca el mensaje de contrasñe
 - [ ] Falla
 - [ ] Bloqueado
 
-| Campo | Completar |
-| --- | --- |
-| Probó | |
-| Fecha | |
-| Hora | |
-| Dispositivo | |
-| Sistema operativo / navegador | |
-| Versión / build | |
+| Campo                         | Completar               |
+| ----------------------------- | ----------------------- |
+| Probó                         | Benjamín Hidalgo        |
+| Fecha                         | 07-11-26                |
+| Hora                          | 12:14                   |
+| Dispositivo                   | PC                      |
+| Sistema operativo / navegador | Windows - Google Chrome |
+| Versión / build               |                         |
 
 **Resultado obtenido:** Solo funciona desde el navegador si emulo un dispositivo movil. Si entro con versión de escritorio no funciona la app.
 
@@ -388,30 +397,28 @@ Debería dejarme clickar y que me aparezca el mensaje de contrasñe
 
 **Estado:**
 
-- [ ] Pasa
+- [x] Pasa
 - [ ] Falla
 - [ ] Bloqueado
 
-| Campo | Completar |
-| --- | --- |
-| Probó | |
-| Fecha | |
-| Hora | |
-| Dispositivo | |
-| Sistema operativo / navegador | |
-| Versión / build | |
+| Campo                         | Completar                |
+| ----------------------------- | ------------------------ |
+| Probó                         | Benjamín Hidalgo         |
+| Fecha                         | 08-11-26                 |
+| Hora                          | 20:50                    |
+| Dispositivo                   | PC                       |
+| Sistema operativo / navegador | Windows - Microsoft Edge |
+| Versión / build               |                          |
 
-**Resultado obtenido:**
-
-<!-- Describir lo que ocurrió al ejecutar el caso. -->
+**Resultado obtenido:** El alumno aparece en el apartado de Activos.
 
 **Evidencia:**
+Se creó el alumno con el nombre *Alumno Prueba 3*
+Se puede ver correctamente en el panel de alumnos activos:
+![Invitación de alumno](docs/evidencias-caso-uso/invitacion.png)
 
-<!-- Agregar enlaces o rutas de capturas, videos o logs. -->
+**Nota / incidencia:** N/A
 
-**Nota / incidencia:**
-
-<!-- Agregar observaciones, motivo del bloqueo o enlace al error reportado. -->
 
 ---
 
@@ -432,30 +439,31 @@ Debería dejarme clickar y que me aparezca el mensaje de contrasñe
 
 **Estado:**
 
-- [ ] Pasa
+- [x] Pasa
 - [ ] Falla
 - [ ] Bloqueado
 
-| Campo | Completar |
-| --- | --- |
-| Probó | |
-| Fecha | |
-| Hora | |
-| Dispositivo | |
-| Sistema operativo / navegador | |
-| Versión / build | |
+| Campo                         | Completar                |
+| ----------------------------- | ------------------------ |
+| Probó                         | Benjamín Hidalgo         |
+| Fecha                         | 08-11-26                 |
+| Hora                          | 21:04                    |
+| Dispositivo                   | PC                       |
+| Sistema operativo / navegador | Windows - Microsoft Edge |
+| Versión / build               |                          |
 
 **Resultado obtenido:**
-
-<!-- Describir lo que ocurrió al ejecutar el caso. -->
-
+1. Cuando se guarda vació no permite continuar mostrando en rojo los campos de nombre, apellido y correo.
+2. Al ingresar el teléfono 12ab automáticamente la casilla se pone en rojo mostrando "Solo números y espacios, entre 8 y 16."
+3. Al ingresar un correo ya usado aparece en pantalla que ya se ha creado una cuenta con ese correo electrónico.
 **Evidencia:**
+![Validación de alta: evidencia 1](docs/evidencias-caso-uso/validacion-alta-1.png)
 
-<!-- Agregar enlaces o rutas de capturas, videos o logs. -->
+![Validación de alta: evidencia 2](docs/evidencias-caso-uso/validacion-alta-2.png)
 
-**Nota / incidencia:**
+![Validación de alta: evidencia 3](docs/evidencias-caso-uso/validacion-alta-3.png)
 
-<!-- Agregar observaciones, motivo del bloqueo o enlace al error reportado. -->
+**Nota / incidencia:** 
 
 ---
 
@@ -480,14 +488,14 @@ Debería dejarme clickar y que me aparezca el mensaje de contrasñe
 - [ ] Falla
 - [ ] Bloqueado
 
-| Campo | Completar |
-| --- | --- |
-| Probó | |
-| Fecha | |
-| Hora | |
-| Dispositivo | |
-| Sistema operativo / navegador | |
-| Versión / build | |
+| Campo                         | Completar                |
+| ----------------------------- | ------------------------ |
+| Probó                         | Benjamín Hidalgo         |
+| Fecha                         | 08-11-26                 |
+| Hora                          | 21:04                    |
+| Dispositivo                   | PC                       |
+| Sistema operativo / navegador | Windows - Microsoft Edge |
+| Versión / build               |                          |
 
 **Resultado obtenido:**
 
@@ -520,30 +528,30 @@ Debería dejarme clickar y que me aparezca el mensaje de contrasñe
 
 **Estado:**
 
-- [ ] Pasa
+- [x] Pasa
 - [ ] Falla
 - [ ] Bloqueado
 
-| Campo | Completar |
-| --- | --- |
-| Probó | |
-| Fecha | |
-| Hora | |
-| Dispositivo | |
-| Sistema operativo / navegador | |
-| Versión / build | |
+| Campo                         | Completar                |
+| ----------------------------- | ------------------------ |
+| Probó                         | Benjamín Hidalgo         |
+| Fecha                         | 08-11-26                 |
+| Hora                          | 21:04                    |
+| Dispositivo                   | PC                       |
+| Sistema operativo / navegador | Windows - Microsoft Edge |
+| Versión / build               |                          |
 
 **Resultado obtenido:**
-
-<!-- Describir lo que ocurrió al ejecutar el caso. -->
+El Alumno puede ingresar y ver su rutina asignada.
 
 **Evidencia:**
+![Aceptar invitación: paso 1](docs/evidencias-caso-uso/aceptar-invitacion-1.png)
 
-<!-- Agregar enlaces o rutas de capturas, videos o logs. -->
+![Aceptar invitación: paso 2](docs/evidencias-caso-uso/aceptar-invitacion-2.png)
 
-**Nota / incidencia:**
+![Aceptar invitación: paso 3](docs/evidencias-caso-uso/aceptar-invitacion-3.png)
 
-<!-- Agregar observaciones, motivo del bloqueo o enlace al error reportado. -->
+**Nota / incidencia:** 
 
 ---
 
@@ -566,14 +574,14 @@ Debería dejarme clickar y que me aparezca el mensaje de contrasñe
 - [ ] Falla
 - [ ] Bloqueado
 
-| Campo | Completar |
-| --- | --- |
-| Probó | |
-| Fecha | |
-| Hora | |
-| Dispositivo | |
-| Sistema operativo / navegador | |
-| Versión / build | |
+| Campo                         | Completar                |
+| ----------------------------- | ------------------------ |
+| Probó                         | Benjamín Hidalgo         |
+| Fecha                         | 08-11-26                 |
+| Hora                          | 21:27                    |
+| Dispositivo                   | PC                       |
+| Sistema operativo / navegador | Windows - Microsoft Edge |
+| Versión / build               |                          |
 
 **Resultado obtenido:**
 
@@ -607,30 +615,29 @@ Debería dejarme clickar y que me aparezca el mensaje de contrasñe
 
 **Estado:**
 
-- [ ] Pasa
+- [x] Pasa
 - [ ] Falla
 - [ ] Bloqueado
 
-| Campo | Completar |
-| --- | --- |
-| Probó | |
-| Fecha | |
-| Hora | |
-| Dispositivo | |
-| Sistema operativo / navegador | |
-| Versión / build | |
+| Campo                         | Completar                |
+| ----------------------------- | ------------------------ |
+| Probó                         | Benjamín Hidalgo         |
+| Fecha                         | 08-11-26                 |
+| Hora                          | 21:04                    |
+| Dispositivo                   | PC                       |
+| Sistema operativo / navegador | Windows - Microsoft Edge |
+| Versión / build               |                          |
 
-**Resultado obtenido:**
-
-<!-- Describir lo que ocurrió al ejecutar el caso. -->
+**Resultado obtenido:** Encuentra con todos los parámetros ingresados.
 
 **Evidencia:**
+![Buscar alumno: evidencia 1](docs/evidencias-caso-uso/buscar-alumno-1.png)
 
-<!-- Agregar enlaces o rutas de capturas, videos o logs. -->
+![Buscar alumno: evidencia 2](docs/evidencias-caso-uso/buscar-alumno-2.png)
+
+![Buscar alumno: evidencia 3](docs/evidencias-caso-uso/buscar-alumno-3.png)
 
 **Nota / incidencia:**
-
-<!-- Agregar observaciones, motivo del bloqueo o enlace al error reportado. -->
 
 ---
 
@@ -650,30 +657,30 @@ Debería dejarme clickar y que me aparezca el mensaje de contrasñe
 
 **Estado:**
 
-- [ ] Pasa
+- [x] Pasa
 - [ ] Falla
 - [ ] Bloqueado
 
-| Campo | Completar |
-| --- | --- |
-| Probó | |
-| Fecha | |
-| Hora | |
-| Dispositivo | |
-| Sistema operativo / navegador | |
-| Versión / build | |
+| Campo                         | Completar                |
+| ----------------------------- | ------------------------ |
+| Probó                         | Benjamín Hidalgo         |
+| Fecha                         | 08-11-26                 |
+| Hora                          | 21:34                    |
+| Dispositivo                   | PC                       |
+| Sistema operativo / navegador | Windows - Microsoft Edge |
+| Versión / build               |                          |
 
 **Resultado obtenido:**
-
-<!-- Describir lo que ocurrió al ejecutar el caso. -->
+La ficha se actualiza correctamente y se aplican las validaciones correspondientes.
 
 **Evidencia:**
+![Editar ficha: evidencia 1](docs/evidencias-caso-uso/editar-ficha-1.png)
 
-<!-- Agregar enlaces o rutas de capturas, videos o logs. -->
+![Editar ficha: evidencia 2](docs/evidencias-caso-uso/editar-ficha-2.png)
+
+![Editar ficha: evidencia 3](docs/evidencias-caso-uso/editar-ficha-3.png)
 
 **Nota / incidencia:**
-
-<!-- Agregar observaciones, motivo del bloqueo o enlace al error reportado. -->
 
 ---
 
@@ -694,30 +701,31 @@ Debería dejarme clickar y que me aparezca el mensaje de contrasñe
 
 **Estado:**
 
-- [ ] Pasa
+- [x] Pasa
 - [ ] Falla
 - [ ] Bloqueado
 
-| Campo | Completar |
-| --- | --- |
-| Probó | |
-| Fecha | |
-| Hora | |
-| Dispositivo | |
-| Sistema operativo / navegador | |
-| Versión / build | |
+| Campo                         | Completar                |
+| ----------------------------- | ------------------------ |
+| Probó                         | Benjamín Hidalgo         |
+| Fecha                         | 08-11-26                 |
+| Hora                          | 21:34                    |
+| Dispositivo                   | PC                       |
+| Sistema operativo / navegador | Windows - Microsoft Edge |
+| Versión / build               |                          |
 
-**Resultado obtenido:**
-
-<!-- Describir lo que ocurrió al ejecutar el caso. -->
+**Resultado obtenido:** Todos los parámetros y validaciones se cumplen con éxito.
 
 **Evidencia:**
+![Registrar anamnesis: evidencia 1](docs/evidencias-caso-uso/regis-anam-1.png)
 
-<!-- Agregar enlaces o rutas de capturas, videos o logs. -->
+![Registrar anamnesis: evidencia 2](docs/evidencias-caso-uso/regis-anam-2.png)
+
+![Registrar anamnesis: evidencia 3](docs/evidencias-caso-uso/regis-anam-3.png)
+
+![Registrar anamnesis: evidencia 4](docs/evidencias-caso-uso/regis-anam-4.png)
 
 **Nota / incidencia:**
-
-<!-- Agregar observaciones, motivo del bloqueo o enlace al error reportado. -->
 
 ---
 
@@ -738,29 +746,26 @@ Debería dejarme clickar y que me aparezca el mensaje de contrasñe
 **Estado:**
 
 - [ ] Pasa
-- [ ] Falla
+- [x] Falla
 - [ ] Bloqueado
 
-| Campo | Completar |
-| --- | --- |
-| Probó | |
-| Fecha | |
-| Hora | |
-| Dispositivo | |
-| Sistema operativo / navegador | |
-| Versión / build | |
+| Campo                         | Completar        |
+| ----------------------------- | ---------------- |
+| Probó                         | Benjamín Hidalgo |
+| Fecha                         | 08-11-26         |
+| Hora                          | 21:44            |
+| Dispositivo                   | iPhone 14        |
+| Sistema operativo / navegador | IOS - Safari     |
+| Versión / build               |                  |
 
-**Resultado obtenido:**
-
-<!-- Describir lo que ocurrió al ejecutar el caso. -->
+**Resultado obtenido:** No funciona se desplaza el texto al deslizar con el dedo.
 
 **Evidencia:**
 
-<!-- Agregar enlaces o rutas de capturas, videos o logs. -->
+![Texto largo en anamnesis: evidencia 1](docs/evidencias-caso-uso/txt-largo-anam-1.jpeg)
 
-**Nota / incidencia:**
-
-<!-- Agregar observaciones, motivo del bloqueo o enlace al error reportado. -->
+![Texto largo en anamnesis: evidencia 2](docs/evidencias-caso-uso/txt-largo-anam-2.jpeg)
+**Nota / incidencia:** Si selecciono el texto se mueve pero no es la idea.
 
 ---
 
