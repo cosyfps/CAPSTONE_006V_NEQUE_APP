@@ -1,0 +1,36 @@
+@startuml
+title Diagrama de componentes — Ñeque
+skinparam shadowing false
+skinparam componentStyle rectangle
+
+package "App móvil (Angular 17 + Capacitor 6)" {
+  [ui/ (páginas y componentes)] as UI
+  [application/ (facades con signals)] as APPL
+  [domain/ (modelos + puertos)] as DOM
+  [infrastructure/ (adapters HTTP)] as INFRA
+}
+
+package "BFF (Hono, función serverless en Vercel)" {
+  [http/ (rutas + validación zod)] as HTTP
+  [application/ (casos de uso)] as BAPP
+  [domain/ (reglas puras, ApiError)] as BDOM
+  [infrastructure/ (Supabase, mappers, storage, cifrado)] as BINF
+}
+
+cloud "Supabase" {
+  database "PostgreSQL + RLS" as PG
+  [Auth (JWT)] as AUTH
+  [Storage (fotos, avatares)] as ST
+}
+
+UI --> APPL
+APPL --> DOM
+INFRA ..|> DOM : implementa puertos
+INFRA --> HTTP : HTTPS /api/v1 + JWT
+HTTP --> BAPP
+BAPP --> BDOM
+BAPP --> BINF
+BINF --> PG
+BINF --> AUTH
+BINF --> ST
+@enduml
